@@ -46,7 +46,7 @@ network <- keras_model_sequential() %>%
 network %>% compile(
   optimizer = 'rmsprop',
   loss = 'categorical_crossentropy',
-  metrix = c('accuracy')
+  metrics = c('accuracy')
 )
 
 # Изначально масивы имеют размерность 60000, 28, 28, сами значения изменяются в пределах от 0 до 255
