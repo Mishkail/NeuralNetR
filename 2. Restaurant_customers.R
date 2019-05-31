@@ -37,3 +37,20 @@ garson(model)
 # С помощью пакета NeuralNetTools мы моем лицезреть 
 # новый вид нейронной сети и гистограмму влияния факторов 
 # на результат нейронной сети 
+
+model1 = nnet(CustomerWillTip ~ Service + Ambience + Food,
+             data = mydata,
+             size = 1,
+             rang = 0.1,
+             decay = 5e-2,
+             maxit = 5000 )
+plotnet(model1)
+
+# прогноз
+
+Service <- c(9, 5, 4)
+Ambience <- c(7, 6, 8)
+Food <- c(4, 6, 7)
+test <- data.frame(Service, Ambience, Food)
+
+predict(model1, newdata = test)
