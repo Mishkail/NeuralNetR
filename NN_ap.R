@@ -102,6 +102,20 @@ plot(history)
 # Проверяем результаты тестовой выборки
 result <- model %>% evaluate(x2, y2)
 
+test_predictions <- model %>% predict(X_test) # строим предсказанные значения
+predictions <- data.frame(test_predictions, y_test) 
+head(predictions)
+# график предсказанных и фактических значений
+ggplot(predictions, aes(x = 1:length(y_test))) +                    # basic graphical object
+  geom_line(aes(y=test_predictions,linetype ="test_predictions"), colour="black") +  # first layer
+  geom_line(aes(y=y_test, linetype ="y_test"), colour="red")+
+  xlab("Наблюдения")+
+  ylab("Фактические/прогнозные значения")+
+  scale_linetype_manual(values =  c(2,1))+
+  labs(title="Targets/Predictions")
+  
+  
+
 result$loss
 result$mean_absolute_error
 summary(model)
