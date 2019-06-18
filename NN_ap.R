@@ -304,11 +304,11 @@ devtools::install_github("andrie/deepviz")
 library(deepviz)
 library(magrittr)
 
-c(13, 10, 1) %>% 
+c(13, 10, 1) %>%  # 1 hidden
   plot_deepviz()
 
-c(13, 10, 10, 1) %>% 
+c(13, 10, 10, 1) %>% # 2 hidden
   plot_deepviz()
 
-c(10, 10, 10, 5, 1) %>% 
+c(10, 10, 10, 5, 1) %>% # 3 hidden
   plot_deepviz()
