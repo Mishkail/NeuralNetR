@@ -1,3 +1,4 @@
+# Прогноз акций с помощью Keras (регресия)
 library('lubridate')
 
 library('lmtest')
