@@ -1,4 +1,3 @@
-# Прогноз акций с помощью Keras (регресия)
 library('lubridate')
 
 library('lmtest')
@@ -305,11 +304,11 @@ devtools::install_github("andrie/deepviz")
 library(deepviz)
 library(magrittr)
 
-c(13, 10, 1) %>%  # 1 hidden
+c(13, 10, 1) %>% 
   plot_deepviz()
 
-c(13, 10, 10, 1) %>% # 2 hidden
+c(13, 10, 10, 1) %>% 
   plot_deepviz()
 
-c(10, 10, 10, 5, 1) %>% # 3 hidden
+c(10, 10, 10, 5, 1) %>% 
   plot_deepviz()
