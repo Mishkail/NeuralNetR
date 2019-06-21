@@ -27,6 +27,9 @@ getSymbols(Symbols = c('AAPL','AXP','HD', 'CVX', 'MCD', 'MSFT',
            from = '2012-12-06', to = '2017-12-06', src = 'yahoo')
 # акции Nike не загрузились, поэтому в данном исследовании убираем данный актив из выборки
 
+# для случайного генератора также лучше добавить опцию set.seed для проверки
+set.seed(5)
+
 # обьединяем акции в одной таблице
 work_data <- cbind.xts(AAPL,AXP, HD, CVX, MCD, MSFT,
                        KO, XOM, GS, CAT, JNJ, MRK,
