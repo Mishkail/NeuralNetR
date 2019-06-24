@@ -72,6 +72,7 @@ model %>%
 model
 
 for(i in 1:2000){
+  cat("processing fold #", i, "\n")
   model %>% fit(x = x.train,
                 y = y.train,
                 batch_size = batch.size,
