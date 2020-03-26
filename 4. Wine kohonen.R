@@ -46,5 +46,5 @@ som.predict <- predict(som.wines, newdata = test_data)
 table(vintages[-train], som.predict$predictions[['vintages']])
 map(som.wines)
 
-график для обученно нейронной сети
+график для обученной нейронной сети
 plot(som.wines, main = 'Wine data Kohonen SOM')
