@@ -25,14 +25,21 @@ random_array <- function(dim) {
 # Создаем массив размерностью 100*32 со случайными числами
 input <- random_array(dim = c(timesteps, input_features))
 
+str(input) # структура объекта
+hist(input[,1]) # гистограмма первого столбца равномерного распределения
+
 # Создаем обьект начального или нулевого состояния нашей сети
 state_t <- rep_len(0, length = c(output_features))
+
 # Создаем вектор весов
 W <- random_array(dim = c(output_features, input_features))
 # Вектор выходных данных предыдущего шага
 U <- random_array(dim = c(output_features, output_features))
 # вектор констант(смещений)
 b <- random_array(dim = c(output_features, 1))
+
+# Функция обновления слоя нейронов на предыдущие состояния выходных данных
+# y = b + w*input + u*output_t-1
 
 # пустая выходная матрица
 output_seq <- array(0, dim = c(timesteps, output_features))
@@ -46,12 +53,16 @@ for (i in 1:nrow(input)) {
     state_t <- output_t
 }
 
+output_seq
+str(output_seq)
 table(state_t)
+plot(state_t)
+
+# Добавить пример с rnorm
 
 ###################################
 # пример вывода результатов в Keras
 ###################################
-
 
 # двумерный массив
 model <- keras_model_sequential() %>%
@@ -83,12 +94,16 @@ summary(model2)
 Ошибка в py_call_impl(callable, dots$args, dots$keywords) :
     ValueError: Object arrays cannot be loaded when allow_pickle=False
 либо
-install_tensorflow(version="nightly")
+install_tensorflow(version = "nightly")
 
 либо откатить numpy через терминал
 
 pip uninstall numpy
 pip install --upgrade numpy==1.16.1
+
+либо 
+
+devtools::install_github("rstudio/keras")
 ###################################
 
 library(keras)
@@ -98,6 +113,7 @@ batch_size <- 32
 
 # загружаем данные imdb
 imdb <- dataset_imdb(num_words = max_features)
+imdb$train$y
 str(imdb) # посмотрим загруженный массив
 
 # Набор данных из 25 000 обзоров фильмов из IMDB, 
@@ -139,12 +155,14 @@ model %>% compile(
     loss = "binary_crossentropy",
     metrics = c("acc")
 )
+
 history <- model %>% fit(
     input_train, y_train,
     epochs = 5,
     batch_size = 128,
     validation_split = 0.2
 )
+
 
 
 plot(history)
