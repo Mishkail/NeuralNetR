@@ -62,5 +62,7 @@ for(i in 1:epoch){
 }
 # Результат после обучения
 output
-
-
+Y
+# Оценка ошибки
+MSE <- sum(Y-output)^2/nrow(Y)
+MSE
